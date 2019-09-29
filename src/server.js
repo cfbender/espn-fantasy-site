@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const { Client } = require("espn-fantasy-football-api/node-dev");
 
 const myClient = new Client({ leagueId: 38034 });
@@ -11,12 +11,18 @@ myClient.setCookies({
   SWID: "{0B64B93E-FFBF-488E-8630-EF94F6EBD636}"
 });
 
+// CHANGE FOR FOLLOWING SEAONS
+const seasonDetails = {
+  seasonId: 2019,
+  schedule: {}
+};
+
 app.use(express.static(path.join(__dirname, "client/build")));
 
-app.get("/api/data/boxscore/", async (req, res) => {
+app.get("/api/boxscore/", async (req, res) => {
   try {
     let data = await myClient.getBoxscoreForWeek({
-      seasonId: parseInt(req.query.seasonId),
+      seasonId: seasonDetails.seasonId,
       matchupPeriodId: parseInt(req.query.matchupPeriodId),
       scoringPeriodId: parseInt(req.query.scoringPeriodId)
     });
@@ -26,16 +32,20 @@ app.get("/api/data/boxscore/", async (req, res) => {
   }
 });
 
-app.get("/api/data/teams", async (req, res) => {
+app.get("/api/teams", async (req, res) => {
   try {
     let data = await myClient.getTeamsAtWeek({
-      seasonId: parseInt(req.query.seasonId),
+      seasonId: seasonDetails.seasonId,
       scoringPeriodId: 0
     });
     res.send(data);
   } catch (error) {
     throw error;
   }
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "/client/build/index.html"));
 });
 
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
