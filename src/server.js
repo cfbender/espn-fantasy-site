@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-const port = 3030;
+const port = process.env.PORT || 3000;
 const { Client } = require("espn-fantasy-football-api/node-dev");
 
 const myClient = new Client({ leagueId: 38034 });
@@ -38,4 +38,4 @@ app.get("/api/data/teams", async (req, res) => {
   }
 });
 
-app.listen(port, () => console.log("Listening at http://localhost:3030"));
+app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
