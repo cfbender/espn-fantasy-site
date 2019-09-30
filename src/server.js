@@ -75,6 +75,11 @@ const seasonDetails = {
 
 let dataCache = {};
 
+/**
+ *
+ * Gets server time and retrieves most recent week of season
+ * @returns {object} Current/Last week of season
+ */
 const getCurrentWeek = async () => {
   let now = moment();
 
@@ -85,6 +90,10 @@ const getCurrentWeek = async () => {
   }
 };
 
+/**
+ *
+ * Updates data on server by calling ESPN API and calculating stats
+ */
 const updateData = async () => {
   console.log(`Data updating at ${moment().format("HH:mm - MM-DD-YYYY")}`);
   let currentWeek = await getCurrentWeek();
