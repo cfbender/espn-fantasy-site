@@ -1,10 +1,18 @@
 {
   "dependencies": {
+    "dotenv": "^8.1.0",
     "espn-fantasy-football-api": "^0.13.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "firebase": "^7.0.0",
+    "lodash.sortby": "^4.7.0",
+    "moment": "^2.24.0"
   },
   "scripts": {
     "start": "node ./src/server.js",
     "heroku-postbuild": "cd client && yarn && yarn run build"
+  },
+  "devDependencies": {
+    "eslint": "^6.5.0",
+    "eslint-plugin-react": "^7.14.3"
   }
 }
