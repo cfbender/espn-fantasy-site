@@ -8,8 +8,8 @@
     "moment": "^2.24.0"
   },
   "scripts": {
-    "start": "cd src && node server.js",
-    "heroku-postbuild": "cd ../client && yarn && yarn run build"
+    "start": "node ./src/server.js",
+    "heroku-postbuild": "cd client && yarn && yarn run build"
   },
   "devDependencies": {
     "eslint": "^6.5.0",
