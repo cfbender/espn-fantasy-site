@@ -5,6 +5,7 @@
   "proxy": "http://localhost:5000",
   "license": "MIT",
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "http-proxy-middleware": "^0.20.0",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",

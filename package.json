@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node ./src/server.js",
-    "heroku-postbuild": "cd client && yarn && yarn build && yarn start"
+    "heroku-postbuild": "cd client && yarn && yarn build"
   },
   "devDependencies": {
     "eslint": "^6.5.0",
