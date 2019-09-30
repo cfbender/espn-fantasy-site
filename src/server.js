@@ -176,7 +176,7 @@ const updateData = async () => {
 
 updateData();
 
-setInterval(updateData, 1800000);
+setInterval(updateData, 7200000);
 
 app.get("/api/data", (req, res) => {
   res.send(dataCache);
