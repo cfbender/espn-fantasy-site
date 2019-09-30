@@ -100,6 +100,7 @@ const getCurrentWeek = async () => {
 app.use(express.static(path.join(__dirname, "client/build")));
 
 const updateData = async () => {
+  console.log(`Data updating at ${moment().format("HH:mm - MM-DD-YYYY")}`);
   let currentWeek = await getCurrentWeek();
   let weeksIter = Array(currentWeek.matchupPeriodId)
     .fill()
@@ -174,6 +175,8 @@ const updateData = async () => {
 };
 
 updateData();
+
+setInterval(updateData, 1800000);
 
 app.get("/api/data", (req, res) => {
   res.send(dataCache);

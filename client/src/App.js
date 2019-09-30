@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App container">
       <h1 className="header mt-5 text-white">The Sunday Champs</h1>
-      <h2 className="text-white">Playoff Race</h2>
+      <h2 className="header text-white">Playoff Race</h2>
       <Table data={teams} />
     </div>
   );
