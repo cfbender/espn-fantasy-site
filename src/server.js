@@ -14,18 +14,6 @@ myClient.setCookies({
   SWID: process.env.SWID
 });
 
-/*
-DATA STRUCTURE
-teams (collection)
-    team (document)
-        teamName (string)
-        totalPoints (int)
-        totalBenchPoints (int)
-        wins (int)
-        topHalves (int)
-        playoffPoints (int)
-*/
-
 // CHANGE FOR FOLLOWING SEAONS
 const seasonDetails = {
   seasonId: 2019,
@@ -96,8 +84,6 @@ const getCurrentWeek = async () => {
     }
   }
 };
-
-app.use(express.static(path.join(__dirname, "..", "client/build")));
 
 const updateData = async () => {
   console.log(`Data updating at ${moment().format("HH:mm - MM-DD-YYYY")}`);
@@ -177,6 +163,8 @@ const updateData = async () => {
 updateData();
 
 setInterval(updateData, 7200000);
+
+app.use(express.static(path.join(__dirname, "..", "client/build")));
 
 app.get("/api/data", (req, res) => {
   res.send(dataCache);
