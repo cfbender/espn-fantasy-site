@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const moment = require("moment");
+const moment = require("moment-timezone");
 const sortBy = require("lodash.sortby");
 require("dotenv").config();
 
@@ -20,51 +20,51 @@ const seasonDetails = {
   schedule: [
     {
       matchupPeriodId: 1,
-      endDate: moment("09-10-2019", "MM-DD-YYYY")
+      endDate: moment("09-10-2019", "MM-DD-YYYY").tz("America/Los_Angeles")
     },
     {
       matchupPeriodId: 2,
-      endDate: moment("09-17-2019", "MM-DD-YYYY")
+      endDate: moment("09-17-2019", "MM-DD-YYYY").tz("America/Los_Angeles")
     },
     {
       matchupPeriodId: 3,
-      endDate: moment("09-24-2019", "MM-DD-YYYY")
+      endDate: moment("09-24-2019", "MM-DD-YYYY").tz("America/Los_Angeles")
     },
     {
       matchupPeriodId: 4,
-      endDate: moment("10-1-2019", "MM-DD-YYYY")
+      endDate: moment("10-1-2019", "MM-DD-YYYY").tz("America/Los_Angeles")
     },
     {
       matchupPeriodId: 5,
-      endDate: moment("10-8-2019", "MM-DD-YYYY")
+      endDate: moment("10-8-2019", "MM-DD-YYYY").tz("America/Los_Angeles")
     },
     {
       matchupPeriodId: 6,
-      endDate: moment("10-15-2019", "MM-DD-YYYY")
+      endDate: moment("10-15-2019", "MM-DD-YYYY").tz("America/Los_Angeles")
     },
     {
       matchupPeriodId: 7,
-      endDate: moment("10-22-2019", "MM-DD-YYYY")
+      endDate: moment("10-22-2019", "MM-DD-YYYY").tz("America/Los_Angeles")
     },
     {
       matchupPeriodId: 8,
-      endDate: moment("10-29-2019", "MM-DD-YYYY")
+      endDate: moment("10-29-2019", "MM-DD-YYYY").tz("America/Los_Angeles")
     },
     {
       matchupPeriodId: 9,
-      endDate: moment("11-5-2019", "MM-DD-YYYY")
+      endDate: moment("11-5-2019", "MM-DD-YYYY").tz("America/Los_Angeles")
     },
     {
       matchupPeriodId: 10,
-      endDate: moment("11-12-2019", "MM-DD-YYYY")
+      endDate: moment("11-12-2019", "MM-DD-YYYY").tz("America/Los_Angeles")
     },
     {
       matchupPeriodId: 11,
-      endDate: moment("11-19-2019", "MM-DD-YYYY")
+      endDate: moment("11-19-2019", "MM-DD-YYYY").tz("America/Los_Angeles")
     },
     {
       matchupPeriodId: 12,
-      endDate: moment("11-26-2019", "MM-DD-YYYY")
+      endDate: moment("11-26-2019", "MM-DD-YYYY").tz("America/Los_Angeles")
     },
     {
       matchupPeriodId: 13,
@@ -81,7 +81,7 @@ let dataCache = {};
  * @returns {object} Current/Last week of season
  */
 const getCurrentWeek = async () => {
-  let now = moment();
+  let now = moment().tz("America/Los_Angeles");
 
   for (let i = 0; i < seasonDetails.schedule.length; i++) {
     if (now.isBefore(seasonDetails.schedule[i].endDate)) {
@@ -95,7 +95,11 @@ const getCurrentWeek = async () => {
  * Updates data on server by calling ESPN API and calculating stats
  */
 const updateData = async () => {
-  console.log(`Data updating at ${moment().format("HH:mm - MM-DD-YYYY")}`);
+  console.log(
+    `Data updating at ${moment()
+      .tz("America/Los_Angeles")
+      .format("HH:mm - MM-DD-YYYY")}`
+  );
   let currentWeek = await getCurrentWeek();
   let weeksIter = Array(currentWeek.matchupPeriodId)
     .fill()
