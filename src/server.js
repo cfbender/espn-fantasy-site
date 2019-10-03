@@ -175,7 +175,8 @@ const updateData = async () => {
 
 updateData();
 
-setInterval(updateData, 7200000);
+hourInterval = 4 * 3600 * 1000; //4 hours, 3600 seconds in an hour, 1000 milliseconds in a second
+setInterval(updateData, hourInterval);
 
 app.use(express.static(path.join(__dirname, "..", "client/build")));
 
