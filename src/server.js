@@ -68,7 +68,19 @@ const seasonDetails = {
     },
     {
       matchupPeriodId: 13,
-      endDate: moment("12-2-2019", "MM-DD-YYYY")
+      endDate: moment("12-2-2019", "MM-DD-YYYY").tz("America/Los_Angeles")
+    },
+    {
+      matchupPeriodId: 14,
+      endDate: moment("12-9-2019", "MM-DD-YYYY").tz("America/Los_Angeles")
+    },
+    {
+      matchupPeriodId: 15,
+      endDate: moment("12-16-2019", "MM-DD-YYYY").tz("America/Los_Angeles")
+    },
+    {
+      matchupPeriodId: 16,
+      endDate: moment("12-23-2019", "MM-DD-YYYY").tz("America/Los_Angeles")
     }
   ]
 };
@@ -88,6 +100,8 @@ const getCurrentWeek = async () => {
       return seasonDetails.schedule[i - 1];
     }
   }
+  
+  return seasonDetails.schedule[seasonDetails.schedule.length - 1]
 };
 
 /**
